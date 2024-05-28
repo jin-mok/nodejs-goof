@@ -12,7 +12,7 @@ This vulnerable app includes the following capabilities to experiment with:
 
 ## Running
 ```bash
-mongod &
+mongod &sdf
 
 git clone https://github.com/snyk-labs/nodejs-goof
 npm install
