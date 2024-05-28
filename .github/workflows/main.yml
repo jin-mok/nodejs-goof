@@ -5,6 +5,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      #- uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: npm install 
+      - uses: snyk/actions/setup@master
+      - name: Snyk monitor
+        run: snyk test --org=2bd54efe-13d4-4a76-9986-a7ba097105e5 
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+#on: push
+#jobs:
+ # security:
+  #  runs-on: ubuntu-latest
+   # steps:
+      - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
         continue-on-error: true
